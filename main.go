@@ -27,6 +27,10 @@ func main() {
 
 	b.Handle("/ask", func(c tele.Context) error {
 
+		if !c.Message().FromGroup() {
+			return c.Reply("Not Allowed, invite to group first")
+		}
+
 		var answer string
 
 		question := c.Message().Payload
